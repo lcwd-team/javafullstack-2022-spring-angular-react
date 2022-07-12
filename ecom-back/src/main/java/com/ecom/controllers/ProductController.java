@@ -3,7 +3,8 @@ package com.ecom.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,13 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ecom.models.Product;
+import com.ecom.payload.ApiResonse;
+import com.ecom.payload.ProductDto;
 import com.ecom.services.ProductService;
-import com.ecom.services.ProductServiceImpl;
+
 
 @RestController
 @RequestMapping("/products")
@@ -31,10 +31,10 @@ public class ProductController {
 	
 	//For creating new Product
 	@PostMapping("/")
-	public Product createProduct(@RequestBody Product product) {
-		Product createdProduct = productService.createProduct(product);
+	public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto product) {
+		ProductDto createdProduct = productService.createProduct(product);
 		System.out.println("product created");
-		return createdProduct;
+		return new ResponseEntity<ProductDto>(createdProduct,HttpStatus.CREATED);
 
 	}
 
@@ -48,30 +48,30 @@ public class ProductController {
 	 */
 	//getting all products
 	@GetMapping("/")
-	public List<Product> listAllProducts() {
-		List<Product> allProducts = productService.getAllProducts();
+	public List<ProductDto> listAllProducts() {
+		List<ProductDto> allProducts = productService.getAllProducts();
 		return allProducts;
 	}
 
 	// update
 	@PutMapping("/{productId}")
-	public Product updateProduct(@PathVariable("productId") int pid, @RequestBody Product newProduct) {
-		Product updatedProduct = productService.updateProduct(newProduct, pid);
+	public ProductDto updateProduct(@PathVariable("productId") int pid, @RequestBody ProductDto newProduct) {
+		ProductDto updatedProduct = productService.updateProduct(newProduct, pid);
 		return updatedProduct;
 
 	}
 
 	// delete
 	@DeleteMapping("/{productId}")
-	public String deleteProduct(@PathVariable int productId) {
+	public ResponseEntity<ApiResonse> deleteProduct(@PathVariable int productId) {
 		productService.deleteProduct(productId);
-		return "Product Delete successfully !!";
+		return new ResponseEntity<ApiResonse>(new ApiResonse("Product Delete successfully !!", false),HttpStatus.OK);
 	}
 
 	// get
 	@GetMapping("/{productId}")
-	public Product getProduct(@PathVariable int productId) {
-		Product product = productService.getProduct(productId);
+	public ProductDto getProduct(@PathVariable int productId) {
+		ProductDto product = productService.getProduct(productId);
 		return product;
 	}
 }

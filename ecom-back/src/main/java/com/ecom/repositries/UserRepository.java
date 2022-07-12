@@ -31,7 +31,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	public List<User> findByNameOrderByNameDesc(String name);
 	
-	public List<User> findTop4ByUserId();
+	public List<User> findTop4ByUserId(int userId);
 	
 //	creating query methods
 	

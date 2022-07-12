@@ -1,38 +1,20 @@
-package com.ecom.models;
+package com.ecom.payload;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class ProductDto {
 
-@Entity
-@Table(name="ecom_products")
-public class Product {
-
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int productId;
 	
-	@Column(name = "product_brand_name",length = 300,unique = true)
 	private String productName;
-	
+
 	private String productDesc;
-	
+
 	private double productPrice;
-	
+
 	private boolean live;
-	
-	private boolean stock=true;
-	
+
+	private boolean stock = true;
+
 	private String imageName;
-	
-	
-	public Product() {
-		super();
-	}
 
 	public int getProductId() {
 		return productId;
@@ -66,20 +48,20 @@ public class Product {
 		this.productPrice = productPrice;
 	}
 
-	public boolean isStock() {
-		return stock;
-	}
-
-	public void setStock(boolean stock) {
-		this.stock = stock;
-	}
-
 	public boolean isLive() {
 		return live;
 	}
 
 	public void setLive(boolean isLive) {
 		this.live = isLive;
+	}
+
+	public boolean isStock() {
+		return stock;
+	}
+
+	public void setStock(boolean stock) {
+		this.stock = stock;
 	}
 
 	public String getImageName() {
@@ -91,9 +73,5 @@ public class Product {
 	}
 	
 	
-	
-	
-	
-	
-	
+
 }

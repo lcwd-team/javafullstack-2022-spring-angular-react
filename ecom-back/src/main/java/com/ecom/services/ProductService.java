@@ -3,6 +3,7 @@ package com.ecom.services;
 import java.util.List;
 
 import com.ecom.models.Product;
+import com.ecom.payload.ProductDto;
 
 public interface ProductService {
 	
@@ -17,9 +18,9 @@ public interface ProductService {
 	 * @param product
 	 * @return Product
 	 */
-	public Product createProduct(Product product);	
-	public Product updateProduct(Product newProduct, int productId);
+	public ProductDto createProduct(ProductDto product);	
+	public ProductDto updateProduct(ProductDto newProduct, int productId);
 	public void deleteProduct(int productId);
-	public Product getProduct(int productId) ;
-	public List<Product> getAllProducts();
+	public ProductDto getProduct(int productId) ;
+	public List<ProductDto> getAllProducts();
 }

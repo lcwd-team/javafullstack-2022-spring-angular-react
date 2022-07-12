@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	public UserDto update(UserDto t, int userId) {
 
 		User u = this.userRepository.findById(userId)
-				.orElseThrow(() -> new ResourceNotFoundException("User not found " + userId));
+				.orElseThrow(() -> new ResourceNotFoundException("User not found with userId " + userId));
 
 		u.setName(t.getName());
 		u.setEmail(t.getEmail());
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void delete(int userId) {
 		User u = this.userRepository.findById(userId)
-				.orElseThrow(() -> new ResourceNotFoundException("User not found " + userId));
+				.orElseThrow(() -> new ResourceNotFoundException("User not found with userid " + userId));
 		this.userRepository.delete(u);
 	}
 
@@ -66,14 +66,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDto getByUserId(int userId) {
 		User u = this.userRepository.findById(userId)
-				.orElseThrow(() -> new ResourceNotFoundException("User not found " + userId));
+				.orElseThrow(() -> new ResourceNotFoundException("User not found with user id  " + userId));
 	
 		return this.toDto(u);
 	}
 
 	@Override
 	public UserDto getByEmail(String email) {	
-		User user = this.userRepository.findByEmail(email).orElseThrow(()-> new ResourceNotFoundException(" User with email not found"));
+		User user = this.userRepository.findByEmail(email).orElseThrow(()-> new ResourceNotFoundException(" User with email not found in database"));
 		return this.toDto(user);
 	}
 
