@@ -9,6 +9,8 @@ public class ProductDto {
 	private String productDesc;
 
 	private double productPrice;
+	
+	private int productQuantity;
 
 	private boolean live;
 
@@ -71,6 +73,15 @@ public class ProductDto {
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
+
+	public int getProductQuantity() {
+		return productQuantity;
+	}
+
+	public void setProductQuantity(int productQuantity) {
+		this.productQuantity = productQuantity;
+	}
+	
 	
 	
 

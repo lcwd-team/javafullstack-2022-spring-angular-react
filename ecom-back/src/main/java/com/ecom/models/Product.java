@@ -23,6 +23,8 @@ public class Product {
 	
 	private double productPrice;
 	
+	private int productQuantity;
+	
 	private boolean live;
 	
 	private boolean stock=true;
@@ -89,6 +91,16 @@ public class Product {
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
+
+	public int getProductQuantity() {
+		return productQuantity;
+	}
+
+	public void setProductQuantity(int productQuantity) {
+		this.productQuantity = productQuantity;
+	}
+	
+	
 	
 	
 	
