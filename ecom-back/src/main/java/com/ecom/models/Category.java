@@ -3,7 +3,9 @@ package com.ecom.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +21,7 @@ public class Category {
 	
 	private String title;
 	
-	@OneToMany(mappedBy ="category")
+	@OneToMany(mappedBy ="category",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Set<Product> products=new HashSet<>();
 	
 	public Category(int categoryId, String title) {

@@ -2,6 +2,7 @@ package com.ecom.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class Product {
 	
 	private String imageName;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Category category;
 	
 	
@@ -102,6 +103,14 @@ public class Product {
 
 	public void setProductQuantity(int productQuantity) {
 		this.productQuantity = productQuantity;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	
 	

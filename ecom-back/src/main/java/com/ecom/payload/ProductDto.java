@@ -1,5 +1,7 @@
 package com.ecom.payload;
 
+import com.ecom.models.Category;
+
 public class ProductDto {
 
 	private int productId;
@@ -17,6 +19,8 @@ public class ProductDto {
 	private boolean stock = true;
 
 	private String imageName;
+	
+	private CategoryDto category;
 
 	public int getProductId() {
 		return productId;
@@ -81,6 +85,18 @@ public class ProductDto {
 	public void setProductQuantity(int productQuantity) {
 		this.productQuantity = productQuantity;
 	}
+
+	public CategoryDto getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryDto category) {
+		this.category = category;
+	}
+
+	
+
+	
 	
 	
 	
