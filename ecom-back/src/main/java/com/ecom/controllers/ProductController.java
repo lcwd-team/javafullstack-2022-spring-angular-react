@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecom.config.AppConstants;
 import com.ecom.payload.ApiResonse;
 import com.ecom.payload.ProductDto;
 import com.ecom.payload.ProductResponse;
@@ -63,8 +64,8 @@ public class ProductController {
 	// category wise get product
 	@GetMapping("/categories/{categoryId}/products")
 	public ResponseEntity<ProductResponse> getProductsOfCategory(@PathVariable int categoryId,
-			@RequestParam(value = "pageNumber", defaultValue = "0", required = false) int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "5", required = false) int pageSize) {
+			@RequestParam(value = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER_STRING, required = false) int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = AppConstants.PAGE_SIZE_STRING, required = false) int pageSize) {
 		ProductResponse listOfProducts = productService.getProductsByCategory(categoryId, pageNumber, pageSize);
 		return new ResponseEntity<ProductResponse>(listOfProducts, HttpStatus.CREATED);
 
@@ -80,9 +81,13 @@ public class ProductController {
 	// getting all products
 	@GetMapping("/products")
 	public ProductResponse listAllProducts(
-			@RequestParam(value = "pageNumber", defaultValue = "0", required = false) int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "5", required = false) int pageSize) {
-		ProductResponse response = productService.getAllProducts(pageNumber, pageSize);
+			@RequestParam(value = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER_STRING, required = false) int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = AppConstants.PAGE_SIZE_STRING, required = false) int pageSize,
+			@RequestParam(value = "sortBy", defaultValue = AppConstants.SORT_BY_STRING, required = false) String sortBy,
+			@RequestParam(value = "sortDir", defaultValue = AppConstants.SORT_DIR_STRING, required = false) String sortDir
+
+	) {
+		ProductResponse response = productService.getAllProducts(pageNumber, pageSize, sortBy, sortDir);
 		return response;
 	}
 

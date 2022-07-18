@@ -72,7 +72,6 @@ public class UserController {
 	}
 
 	// get by email
-
 	@GetMapping("/email/{userEmail}")
 	public ResponseEntity<UserDto> getByUserEmail(@PathVariable String userEmail) {
 		UserDto userDto = this.userService.getByEmail(userEmail);

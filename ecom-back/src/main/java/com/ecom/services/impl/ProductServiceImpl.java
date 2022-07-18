@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.ecom.exception.ResourceNotFoundException;
@@ -20,6 +21,8 @@ import com.ecom.payload.ProductResponse;
 import com.ecom.repositries.CategoryRepository;
 import com.ecom.repositries.ProductRepository;
 import com.ecom.services.ProductService;
+
+
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -76,8 +79,17 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductResponse getAllProducts(int pageNumber, int pageSize) {
-		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+	public ProductResponse getAllProducts(int pageNumber, int pageSize,String sortBy,String sortDir) {
+		
+		Sort sort=null;
+		if(sortDir.trim().toLowerCase().equals("asc"))
+		{
+			sort=Sort.by(sortBy).ascending();
+		}else {
+			sort=Sort.by(sortBy).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize,sort);
 
 		Page<Product> page = this.productRepository.findAll(pageable);
 

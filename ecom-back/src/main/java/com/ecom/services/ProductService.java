@@ -27,7 +27,7 @@ public interface ProductService {
 
 	public ProductDto getProduct(int productId);
 
-	public  ProductResponse getAllProducts(int pageNumber, int pageSize);
+	public  ProductResponse getAllProducts(int pageNumber, int pageSize,String sortBy,String sortDir);
 
 	public ProductResponse getProductsByCategory(int categoryId,int pageNumber,int pageSize);
 
