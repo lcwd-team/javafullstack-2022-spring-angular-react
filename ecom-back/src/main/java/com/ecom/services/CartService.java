@@ -15,6 +15,6 @@ public interface CartService {
 	CartDto get(String userName);
 
 	// remove item from cart
-	CartDto removeItem(String username, int itemId);
+	CartDto removeItem(String username, int productId);
 
 }

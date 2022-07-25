@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -39,6 +40,9 @@ public class User {
 	//at according to you
 	
 	private boolean active;
+	
+	@OneToOne(mappedBy = "user")
+	private Cart cart;
 	
 	
 	public User(int userId, String name, String email, String password, String address, String about, String gender,
@@ -138,6 +142,16 @@ public class User {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+	
+	
 
 
 	

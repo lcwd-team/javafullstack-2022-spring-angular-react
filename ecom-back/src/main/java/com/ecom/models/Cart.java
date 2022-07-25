@@ -3,6 +3,7 @@ package com.ecom.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ public class Cart {
 	private User user;
 
 
-	@OneToMany(mappedBy = "cart")
+	@OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<CartItem> items=new HashSet<>();
 
 

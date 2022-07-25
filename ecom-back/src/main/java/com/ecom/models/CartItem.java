@@ -52,10 +52,20 @@ public class CartItem {
 		return totalProductPrice;
 	}
 
-	public void setTotalProductPrice(double totalProductPrice) {
+	public void setTotalProductPrice() {
 
 		this.totalProductPrice = this.product.getProductPrice() * this.quantity;
 
 	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+	
+	
 
 }
