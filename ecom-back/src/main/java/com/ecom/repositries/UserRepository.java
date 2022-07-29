@@ -12,6 +12,8 @@ import com.ecom.models.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	// custom finder methods
+	//important method
+	//email == username for our project
 	public Optional<User> findByEmail(String email);
 	
 	public List<User> findByName(String name);

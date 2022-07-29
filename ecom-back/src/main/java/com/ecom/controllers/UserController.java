@@ -6,8 +6,10 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.util.ParallelSorter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +30,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	// create
 
 	// 201- created
@@ -35,6 +40,7 @@ public class UserController {
 	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {	
 		userDto.setCreateAt(new Date());
 		userDto.setActive(true);
+		userDto.setPassword(this.passwordEncoder.encode(userDto.getPassword()));
 		UserDto createdUser = this.userService.create(userDto);			
 		return new ResponseEntity<UserDto>(createdUser, HttpStatus.CREATED);
 
