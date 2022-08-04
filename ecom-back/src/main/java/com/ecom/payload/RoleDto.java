@@ -1,25 +1,21 @@
-package com.ecom.models;
+package com.ecom.payload;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Id;
 
-@Entity
-public class Role {
+public class RoleDto {
 
     @Id
     private int id;
     private String name;
 
-    @ManyToMany
-    private Set<User> users=new HashSet<>();
+    public RoleDto(int id, String name) {
 
-    public Role(int id, String name) {
+
         this.id = id;
         this.name = name;
     }
 
-    public Role() {
+    public RoleDto() {
     }
 
     public int getId() {

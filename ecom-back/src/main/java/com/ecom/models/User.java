@@ -1,13 +1,12 @@
 package com.ecom.models;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.persistence.*;
 
@@ -51,7 +50,7 @@ public class User implements UserDetails {
     private Cart cart;
 
 
-	@ManyToMany(fetch = FetchType.EAGER,mappedBy = "users")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
     private Set<Role> roles = new HashSet<>();
 
     public User(int userId, String name, String email, String password, String address, String about, String gender,
@@ -99,7 +98,8 @@ public class User implements UserDetails {
     //important method for providing authority
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<SimpleGrantedAuthority> authorities = this.roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        return authorities;
     }
 
     public String getPassword() {
@@ -194,4 +194,11 @@ public class User implements UserDetails {
     }
 
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }

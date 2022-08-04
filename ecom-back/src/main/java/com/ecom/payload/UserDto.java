@@ -1,6 +1,12 @@
 package com.ecom.payload;
 
+import com.ecom.models.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -40,6 +46,8 @@ public class UserDto {
 
 	private boolean active;
 
+	private Set<RoleDto> roles = new HashSet<>();
+
 	public int getUserId() {
 		return userId;
 	}
@@ -64,13 +72,17 @@ public class UserDto {
 		this.email = email;
 	}
 
+
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
 
+	@JsonProperty
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 	public String getAddress() {
 		return address;
@@ -119,7 +131,13 @@ public class UserDto {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-	
 
+
+	public Set<RoleDto> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<RoleDto> roles) {
+		this.roles = roles;
+	}
 }

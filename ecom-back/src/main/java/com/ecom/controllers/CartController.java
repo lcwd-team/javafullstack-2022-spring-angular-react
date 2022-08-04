@@ -1,5 +1,7 @@
 package com.ecom.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,32 +21,34 @@ import com.ecom.services.CartService;
 @RequestMapping("/carts")
 public class CartController {
 
-	String userName = "durgesh@dev.com";
-	@Autowired
-	private CartService cartService;
+    Logger logger = LoggerFactory.getLogger(CartController.class);
 
-	@PostMapping("/")
-	public ResponseEntity<CartDto> addItemToCart(@RequestBody ItemRequest reqeust) {
+    String userName = "durgesh@dev.com";
+    @Autowired
+    private CartService cartService;
 
-		// authentication: dynamic
+    @PostMapping("/")
+    public ResponseEntity<CartDto> addItemToCart(@RequestBody ItemRequest reqeust) {
 
-		CartDto cartDto = this.cartService.addItem(reqeust, userName);
-		return new ResponseEntity<CartDto>(cartDto, HttpStatus.OK);
+        // authentication: dynamic
 
-	}
+        CartDto cartDto = this.cartService.addItem(reqeust, userName);
+        return new ResponseEntity<CartDto>(cartDto, HttpStatus.OK);
 
-	// get cart
+    }
 
-	@GetMapping("/")
-	public ResponseEntity<CartDto> getCart() {
-		CartDto cartDto = this.cartService.get(userName);
-		return new ResponseEntity<CartDto>(cartDto, HttpStatus.OK);
-	}
+    // get cart
 
-	@PutMapping("/{productId}")
-	public ResponseEntity<CartDto> removeProductFromcart(@PathVariable int productId) {
-		CartDto cartDto = this.cartService.removeItem(userName, productId);
-		return new ResponseEntity<CartDto>(cartDto, HttpStatus.OK);
-	}
+    @GetMapping("/")
+    public ResponseEntity<CartDto> getCart() {
+        CartDto cartDto = this.cartService.get(userName);
+        return new ResponseEntity<CartDto>(cartDto, HttpStatus.OK);
+    }
+
+    @PutMapping("/{productId}")
+    public ResponseEntity<CartDto> removeProductFromcart(@PathVariable int productId) {
+        CartDto cartDto = this.cartService.removeItem(userName, productId);
+        return new ResponseEntity<CartDto>(cartDto, HttpStatus.OK);
+    }
 
 }
