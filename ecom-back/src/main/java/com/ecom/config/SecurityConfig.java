@@ -29,7 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public static String[] PUBLIC_URLS = {
             "/users/",
-            "/auth/login"
+            "/auth/login",
+            "/v3/api-docs",
+            "/v2/api-docs",
+            "/swagger-resources/**",
+            "/swagger-ui/**",
+            "/webjars/**"
     };
 
 
@@ -47,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers(PUBLIC_URLS).permitAll()
+//                .antMatchers(HttpMethod.POST,"/users/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()

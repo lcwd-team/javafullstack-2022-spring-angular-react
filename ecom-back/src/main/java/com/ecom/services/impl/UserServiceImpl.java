@@ -3,6 +3,8 @@ package com.ecom.services.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ecom.models.Role;
+import com.ecom.repositries.RoleRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +22,19 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
 
+    @Autowired
+    private RoleRepository roleRepository;
+
+
     @Override
     public UserDto create(UserDto userDto) {
 //		Dto to Entity
         User user = this.toEntity(userDto);
-        System.out.println(userDto.getRoles());
-        System.out.println(user.getRoles().size());
+
+
+        //get the normal user role
+        Role role = this.roleRepository.findById(7412).get();
+        user.getRoles().add(role);
         User createdUser = this.userRepository.save(user);
 //		Entity to DTO
         return this.toDto(createdUser);

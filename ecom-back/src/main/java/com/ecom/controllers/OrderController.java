@@ -12,21 +12,22 @@ import com.ecom.payload.OrderDto;
 import com.ecom.payload.OrderRequest;
 import com.ecom.services.OrderService;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
 
-	String userName = "durgesh@dev.com";
 
-	@Autowired
-	private OrderService orderService;
+    @Autowired
+    private OrderService orderService;
 
-	@PostMapping("/")
-	public ResponseEntity<OrderDto> createOrder(@RequestBody OrderRequest request) {
+    @PostMapping("/")
+    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderRequest request, Principal principal) {
 
-		OrderDto createOrder = this.orderService.createOrder(request, userName);
+        OrderDto createOrder = this.orderService.createOrder(request, principal.getName());
 
-		return new ResponseEntity<OrderDto>(createOrder, HttpStatus.CREATED);
-	}
+        return new ResponseEntity<OrderDto>(createOrder, HttpStatus.CREATED);
+    }
 
 }

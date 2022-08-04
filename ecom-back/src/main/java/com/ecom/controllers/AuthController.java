@@ -1,5 +1,6 @@
 package com.ecom.controllers;
 
+import com.ecom.exception.BadUserLoginDetailException;
 import com.ecom.payload.JwtRequest;
 import com.ecom.payload.JwtResponse;
 import com.ecom.payload.UserDto;
@@ -65,10 +66,10 @@ public class AuthController {
             manager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (BadCredentialsException e) {
 
-            throw new Exception("Invalid username or Password !!");
+            throw new BadUserLoginDetailException("Invalid username or Password !!");
 
         } catch (DisabledException e) {
-            throw new Exception("User is not active !!");
+            throw new BadUserLoginDetailException("User is not active !!");
         }
 
 

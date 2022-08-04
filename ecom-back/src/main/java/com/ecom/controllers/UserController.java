@@ -44,13 +44,6 @@ public class UserController {
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
         userDto.setCreateAt(new Date());
         userDto.setActive(true);
-
-        Role role2 = new Role();
-        role2.setId(7412);
-        role2.setName("ROLE_NORMAL");
-        Set<RoleDto> roles = new HashSet<>();
-        roles.add(this.mapper.map(role2, RoleDto.class));
-        userDto.setRoles(roles);
         userDto.setPassword(this.passwordEncoder.encode(userDto.getPassword()));
         UserDto createdUser = this.userService.create(userDto);
         return new ResponseEntity<UserDto>(createdUser, HttpStatus.CREATED);

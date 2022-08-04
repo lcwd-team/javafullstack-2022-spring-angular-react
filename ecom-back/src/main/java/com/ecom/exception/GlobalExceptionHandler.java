@@ -22,6 +22,12 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ApiResonse>(apiResonse, HttpStatus.NOT_FOUND);
 
 	}
+	@ExceptionHandler(BadUserLoginDetailException.class)
+	public ResponseEntity<ApiResonse> handleBadUserLoginDetailException(BadUserLoginDetailException ex) {
+		ApiResonse apiResonse = new ApiResonse(ex.getMessage(), false);
+		return new ResponseEntity<ApiResonse>(apiResonse, HttpStatus.BAD_REQUEST);
+
+	}
 
 	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
 	public ResponseEntity<ApiResonse> handleSQLIntegrityException(SQLIntegrityConstraintViolationException ex) {

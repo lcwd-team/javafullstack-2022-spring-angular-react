@@ -50,7 +50,7 @@ public class User implements UserDetails {
     private Cart cart;
 
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
 
     public User(int userId, String name, String email, String password, String address, String about, String gender,
