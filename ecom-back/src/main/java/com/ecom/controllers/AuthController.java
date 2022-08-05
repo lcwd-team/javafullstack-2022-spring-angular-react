@@ -33,10 +33,8 @@ public class AuthController {
 
     @Autowired
     private JwtHelper helper;
-
     @Autowired
     private ModelMapper mapper;
-
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(
             @RequestBody JwtRequest request

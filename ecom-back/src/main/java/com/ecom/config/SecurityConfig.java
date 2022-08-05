@@ -52,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers(PUBLIC_URLS).permitAll()
+                .antMatchers(HttpMethod.GET).permitAll()
 //                .antMatchers(HttpMethod.POST,"/users/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
@@ -60,7 +61,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
 
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
 
