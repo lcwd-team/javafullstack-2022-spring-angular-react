@@ -11,7 +11,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomNavbarComponent } from './components/custom-navbar/custom-navbar.component';
 import { AppRoutingModule } from './app-routing.module';
-
+import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from "@angular/common/http"
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,9 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

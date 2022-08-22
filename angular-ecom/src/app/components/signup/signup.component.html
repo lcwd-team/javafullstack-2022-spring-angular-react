@@ -1,1 +1,130 @@
-<p>signup works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <!-- //main content area  -->
+      <div class="card border-0 shadow-sm mt-5">
+        <div class="card-body">
+          <h3>Signup Here</h3>
+          <div class="card-title">Fill the correct details</div>
+          <form action="#" (ngSubmit)="submitForm($event)" novalidate>
+            <!-- name field  -->
+            <div class="mb-2 mt-4">
+              <label for="name">Your name</label>
+              <input
+                type="text"
+                required
+                id="name"
+                name="name"
+                [(ngModel)]="user.name"
+                class="form-control rounded-0"
+                placeholder="Enter here"
+              />
+            </div>
+            <!-- email field  -->
+            <div class="mb-2">
+              <label for="email">Your email</label>
+              <input
+                type="email"
+                required
+                name="email"
+                id="email"
+                [(ngModel)]="user.email"
+                class="form-control rounded-0"
+                placeholder="Enter here"
+              />
+            </div>
+            <!-- password field  -->
+            <div class="mb-2">
+              <label for="password">Your password</label>
+              <input
+                type="password"
+                required
+                name="password"
+                id="password"
+                [(ngModel)]="user.password"
+                class="form-control rounded-0"
+                placeholder="Enter here"
+              />
+            </div>
+
+            <!-- about field  -->
+
+            <div class="mb-2">
+              <label for="about">Something about yourself</label>
+              <textarea
+                style="height: 100px"
+                name="about"
+                
+                [(ngModel)]="user.about"
+                class="form-control rounded-0"
+                id="about"
+              ></textarea>
+            </div>
+
+            <!-- address field  -->
+            <div class="mb-2">
+              <label for="address">Address</label>
+              <textarea
+                style="height: 50px"
+                name="address"
+                class="form-control rounded-0"
+                id="address"
+                [(ngModel)]="user.address"
+              ></textarea>
+            </div>
+
+            <!-- gender field  -->
+            <div class="mb-2">
+              <div class="form-check form-check-inline">
+                <input
+                  type="radio"
+                  name="gender"
+                  class="form-check-input"
+                  id="female"
+                  [(ngModel)]="user.gender"
+                  value="female"
+                />
+                <label class="form-check-label" for="female">Female</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  type="radio"
+                  name="gender"
+                  class="form-check-input"
+                  id="male"
+                  [(ngModel)]="user.gender"
+                  value="male"
+                />
+                <label class="form-check-label" for="male">Male</label>
+              </div>
+
+             
+            </div>
+
+
+             <!-- phoen field  -->
+
+             <div class="mb-2 mt-2">
+                <label for="phone">Your Phone Number</label>
+                <input
+                  type="number"
+                  required
+                  id="phone"
+                  name="phone"
+                  [(ngModel)]="user.phone"
+                  class="form-control rounded-0"
+                  placeholder="Enter here"
+                />
+              </div>
+
+              <div class="container text-center">
+                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="reset" class="btn btn-danger ms-2">Reset Data</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
