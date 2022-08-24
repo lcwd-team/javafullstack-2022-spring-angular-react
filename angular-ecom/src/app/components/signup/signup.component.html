@@ -6,7 +6,7 @@
         <div class="card-body">
           <h3>Signup Here</h3>
           <div class="card-title">Fill the correct details</div>
-          <form action="#" (ngSubmit)="submitForm($event)" novalidate>
+          <form action="#"  (ngSubmit)="submitForm($event)" novalidate>
             <!-- name field  -->
             <div class="mb-2 mt-4">
               <label for="name">Your name</label>
@@ -17,8 +17,12 @@
                 name="name"
                 [(ngModel)]="user.name"
                 class="form-control rounded-0"
+                [ngClass]=" status.errorMessage.name ? 'is-invalid' : ''"
                 placeholder="Enter here"
               />
+              <div  class="invalid-feedback">
+               {{  status.errorMessage.name }}
+              </div>
             </div>
             <!-- email field  -->
             <div class="mb-2">
@@ -31,7 +35,12 @@
                 [(ngModel)]="user.email"
                 class="form-control rounded-0"
                 placeholder="Enter here"
+
+                [ngClass]=" status.errorMessage.email ? 'is-invalid' : ''"
               />
+              <div  class="invalid-feedback">
+                {{  status.errorMessage.email }}
+               </div>
             </div>
             <!-- password field  -->
             <div class="mb-2">
@@ -44,7 +53,11 @@
                 [(ngModel)]="user.password"
                 class="form-control rounded-0"
                 placeholder="Enter here"
+                [ngClass]=" status.errorMessage.password ? 'is-invalid' : ''"
               />
+              <div  class="invalid-feedback">
+                {{  status.errorMessage.password }}
+               </div>
             </div>
 
             <!-- about field  -->
@@ -58,7 +71,11 @@
                 [(ngModel)]="user.about"
                 class="form-control rounded-0"
                 id="about"
+                [ngClass]=" status.errorMessage.about ? 'is-invalid' : ''"
               ></textarea>
+              <div  class="invalid-feedback">
+                {{  status.errorMessage.about }}
+               </div>
             </div>
 
             <!-- address field  -->
@@ -114,7 +131,12 @@
                   [(ngModel)]="user.phone"
                   class="form-control rounded-0"
                   placeholder="Enter here"
+                  [ngClass]=" status.errorMessage.phone ? 'is-invalid' : ''"
                 />
+
+                <div  class="invalid-feedback">
+                  {{  status.errorMessage.phone }}
+                 </div>
               </div>
 
               <div class="container text-center">

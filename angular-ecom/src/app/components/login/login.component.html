@@ -7,7 +7,7 @@
         <div class="card-body">
           <h3 class="my-3">Login here</h3>
 
-          <form action="">
+          <form action="" (ngSubmit)="submitLoginRequest($event)">
 
             <!-- email field  -->
 
@@ -19,8 +19,10 @@
                 type="email"
                 class="form-control rounded-0"
                 id="username"
+                name="username"
                 aria-describedby="emailHelp"
                 placeholder="Enter your username"
+                [(ngModel)]="loginData.username"
               />
               
             </div>
@@ -38,14 +40,16 @@
                   type="password"
                   class="form-control rounded-0"
                   id="password"
+                  name="password"
                   aria-describedby="emailHelp"
                   placeholder="Enter your password"
+                  [(ngModel)]="loginData.password"
                 />
                 
               </div>
 
               <div class="container text-center">
-                <button class="btn btn-primary rounded-0">Login</button>
+                <button type="submit" class="btn btn-primary rounded-0">Login</button>
                 <button class="btn btn-warning rounded-0 ms-2">Reset</button>
               </div>
   

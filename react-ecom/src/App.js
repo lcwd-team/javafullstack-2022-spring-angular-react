@@ -12,7 +12,8 @@ import Dashboard from "./components/Dashboard";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomNavbar from "./components/CustomNavbar";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   // const [x,setX]=useState(50)
 
@@ -22,7 +23,9 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ToastContainer position="bottom-center" />
       <CustomNavbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

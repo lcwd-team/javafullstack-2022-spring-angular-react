@@ -13,6 +13,8 @@ import { CustomNavbarComponent } from './components/custom-navbar/custom-navbar.
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http"
+import { ToastrModule } from 'ngx-toastr';
+import {BrowserAnimationsModule } from '@angular/platform-browser/animations'
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,12 @@ import {HttpClientModule} from "@angular/common/http"
     NgbModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      positionClass:'toast-bottom-center'
+    }),
+    BrowserAnimationsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
