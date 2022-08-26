@@ -1,6 +1,10 @@
+import Base from "./Base";
 const About=()=>{
     return (
-        <h1>This is about component</h1>
+       <Base>
+       
+       <h1>This is about component</h1>
+       </Base>
     )
 }
 

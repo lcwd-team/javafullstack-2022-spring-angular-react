@@ -1,0 +1,10 @@
+<div class="container" *ngIf="isLogin">
+  <h1>Welcome to dashbaord</h1>
+  <h1>{{ user.name }}</h1>
+  <h1>{{user.email}}</h1>
+  <button (click)="logoutUser()" class="btn btn-primary">Logout</button>
+</div>
+
+<div class="container" *ngIf="!isLogin">
+  <h1>User is not login . Please login first</h1>
+</div>

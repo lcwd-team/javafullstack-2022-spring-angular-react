@@ -14,6 +14,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomNavbar from "./components/CustomNavbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PrivateRoutes from "./components/PrivateRoutes";
 function App() {
   // const [x,setX]=useState(50)
 
@@ -24,7 +25,6 @@ function App() {
   return (
     <BrowserRouter>
       <ToastContainer position="bottom-center" />
-      <CustomNavbar />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,8 +32,13 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/singup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+
         <Route path="/services" element={<Services />} />
+
+        <Route path="/user" element={<PrivateRoutes />}>
+          <Route path="dashboard" element={<Dashboard />} />
+
+        </Route>
       </Routes>
     </BrowserRouter>
   );

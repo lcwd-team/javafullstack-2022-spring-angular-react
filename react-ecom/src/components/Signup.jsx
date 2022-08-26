@@ -11,6 +11,7 @@ import {
 } from 'reactstrap'
 import { createUser } from '../services/user-service';
 import { toast } from 'react-toastify'
+import Base from './Base';
 function Signup() {
 
 
@@ -28,7 +29,7 @@ function Signup() {
   })
 
   const onFieldChange = (event, fieldName) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     setUser({ ...user, [fieldName]: event.target.value })
 
   }
@@ -63,7 +64,7 @@ function Signup() {
           messages = messages + ` ${i.toUpperCase()}  ${error.response.data[i]}  \n`
 
         }
-        messages=messages+""
+        messages = messages + ""
         toast.error(messages);
       } else {
         // alert("server error")
@@ -76,154 +77,156 @@ function Signup() {
 
 
   return (
+    <Base>
 
-    <Container>
+      <Container>
 
-      <Row>
+        <Row>
 
-        <Col md={{ size: 6, offset: 3 }}>
-
-
-          <Card className='border-0 mt-3 shadow-sm'>
-
-            <CardBody>
-              <h3>Singup here </h3>
-              <CardTitle>Fill fill the correct details</CardTitle>
-
-              {/* 
-              {JSON.stringify(user)} */}
+          <Col md={{ size: 6, offset: 3 }}>
 
 
-              <Form onSubmit={registerUser}>
+            <Card className='border-0 mt-3 shadow-sm'>
 
-                {/* name field  */}
-                <div className='mb-2 mt-4'>
-                  <Label for="name" >Name</Label>
-                  <Input
-                    type="text"
-                    id='name'
-                    placeholder='Enter here'
-                    onChange={(event) => onFieldChange(event, 'name')}
-                    value={user.name}
+              <CardBody>
+                <h3>Singup here </h3>
+                <CardTitle>Fill fill the correct details</CardTitle>
 
-                  />
-
-                </div>
-                {/* email field  */}
-                <div className='mb-2 '>
-                  <Label for="email" >Email </Label>
-                  <Input
-                    type="email"
-                    id='email'
-                    placeholder='Enter here'
-                    onChange={(event) => onFieldChange(event, 'email')}
-                    value={user.email}
-                  />
-
-                </div>
-                {/* password field  */}
-                <div className='mb-2 '>
-                  <Label for="password" >New Password </Label>
-                  <Input
-                    type="password"
-                    id='password'
-                    placeholder='Enter here'
-                    onChange={(event) => onFieldChange(event, 'password')}
-                    value={user.password}
-
-                  />
-
-                </div>
-                {/* about field  */}
-                <div className='mb-2 '>
-                  <Label for="about" >Something about yourself </Label>
-                  <Input
-                    type="textarea"
-                    id='about'
-                    placeholder='Enter here'
-                    onChange={(event) => onFieldChange(event, 'about')}
-                    value={user.about}
-
-                  />
-
-                </div>
-                {/* address field  */}
-                <div className='mb-2 '>
-                  <Label for="address" >Your address </Label>
-                  <Input
-                    type="textarea"
-                    id='address'
-                    placeholder='Enter here'
-                    onChange={(event) => onFieldChange(event, 'address')}
-                    value={user.address}
-
-                  />
-
-                </div>
+                {/* 
+        {JSON.stringify(user)} */}
 
 
-                {/* gender field  */}
+                <Form onSubmit={registerUser}>
 
-                <FormGroup>
+                  {/* name field  */}
+                  <div className='mb-2 mt-4'>
+                    <Label for="name" >Name</Label>
+                    <Input
+                      type="text"
+                      id='name'
+                      placeholder='Enter here'
+                      onChange={(event) => onFieldChange(event, 'name')}
+                      value={user.name}
 
-                  <Input
-                    type='radio' name='gender'
-                    checked={user.gender == 'male'}
-                    onChange={(event) => onFieldChange(event, 'gender')}
-                    value={'male'}
+                    />
 
-                  />
-                  {' '}
-                  <Label>Male</Label>
+                  </div>
+                  {/* email field  */}
+                  <div className='mb-2 '>
+                    <Label for="email" >Email </Label>
+                    <Input
+                      type="email"
+                      id='email'
+                      placeholder='Enter here'
+                      onChange={(event) => onFieldChange(event, 'email')}
+                      value={user.email}
+                    />
+
+                  </div>
+                  {/* password field  */}
+                  <div className='mb-2 '>
+                    <Label for="password" >New Password </Label>
+                    <Input
+                      type="password"
+                      id='password'
+                      placeholder='Enter here'
+                      onChange={(event) => onFieldChange(event, 'password')}
+                      value={user.password}
+
+                    />
+
+                  </div>
+                  {/* about field  */}
+                  <div className='mb-2 '>
+                    <Label for="about" >Something about yourself </Label>
+                    <Input
+                      type="textarea"
+                      id='about'
+                      placeholder='Enter here'
+                      onChange={(event) => onFieldChange(event, 'about')}
+                      value={user.about}
+
+                    />
+
+                  </div>
+                  {/* address field  */}
+                  <div className='mb-2 '>
+                    <Label for="address" >Your address </Label>
+                    <Input
+                      type="textarea"
+                      id='address'
+                      placeholder='Enter here'
+                      onChange={(event) => onFieldChange(event, 'address')}
+                      value={user.address}
+
+                    />
+
+                  </div>
 
 
+                  {/* gender field  */}
 
-                  <Input type='radio' className='ms-3' name='gender'
-                    checked={user.gender == 'female'}
-                    onChange={(event) => onFieldChange(event, 'gender')}
-                    value={'female'}
-                  />
-                  {' '}
-                  <Label>Female</Label>
+                  <FormGroup>
 
-                </FormGroup>
+                    <Input
+                      type='radio' name='gender'
+                      checked={user.gender == 'male'}
+                      onChange={(event) => onFieldChange(event, 'gender')}
+                      value={'male'}
 
-
-                {/* phone field  */}
-                <div className='mb-2 '>
-                  <Label for="phone" > Phone number </Label>
-                  <Input
-                    type="number"
-                    id='phone'
-                    placeholder='Enter here'
-                    onChange={(event) => onFieldChange(event, 'phone')}
-                    value={user.phone}
-                  />
-
-                </div>
-
-
-                <Container className='mt-2 text-center'>
-                  <Button color='primary'>Register</Button>
-                  <Button color='danger ms-2'>Reset Data</Button>
-                </Container>
-
-              </Form>
-
-            </CardBody>
-
-          </Card>
+                    />
+                    {' '}
+                    <Label>Male</Label>
 
 
 
-        </Col>
+                    <Input type='radio' className='ms-3' name='gender'
+                      checked={user.gender == 'female'}
+                      onChange={(event) => onFieldChange(event, 'gender')}
+                      value={'female'}
+                    />
+                    {' '}
+                    <Label>Female</Label>
+
+                  </FormGroup>
 
 
-      </Row>
+                  {/* phone field  */}
+                  <div className='mb-2 '>
+                    <Label for="phone" > Phone number </Label>
+                    <Input
+                      type="number"
+                      id='phone'
+                      placeholder='Enter here'
+                      onChange={(event) => onFieldChange(event, 'phone')}
+                      value={user.phone}
+                    />
+
+                  </div>
 
 
-    </Container>
+                  <Container className='mt-2 text-center'>
+                    <Button color='primary'>Register</Button>
+                    <Button color='danger ms-2'>Reset Data</Button>
+                  </Container>
 
+                </Form>
+
+              </CardBody>
+
+            </Card>
+
+
+
+          </Col>
+
+
+        </Row>
+
+
+      </Container>
+
+    </Base>
   )
 }
 

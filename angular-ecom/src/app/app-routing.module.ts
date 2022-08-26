@@ -6,6 +6,8 @@ import { LoginComponent } from "./components/login/login.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { ServicesComponent } from "./components/services/services.component";
 import { SignupComponent } from "./components/signup/signup.component";
+import { UserDashboardComponent } from "./components/user-dashboard/user-dashboard.component";
+import { UserDashboardGuard } from "./guards/user-dashboard.guard";
 
 
 const routes:Routes=[
@@ -33,6 +35,11 @@ const routes:Routes=[
     {
         path:'home',
         component:HomeComponent
+    },
+    {
+        path:'dashboard',
+        component:UserDashboardComponent,
+        canActivate:[UserDashboardGuard]
     }
 ]
 

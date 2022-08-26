@@ -1,14 +1,21 @@
 import React from 'react'
+import Base from './Base'
 
 function Services() {
     return (
 
-        <div>
 
-            <div>This is services component</div>
-            <p>This is my paragrap</p>
+        <Base>
 
-        </div>
+
+            <div>
+
+                <div>This is services component</div>
+                <p>This is my paragrap</p>
+
+            </div>
+
+        </Base>
 
     )
 }
