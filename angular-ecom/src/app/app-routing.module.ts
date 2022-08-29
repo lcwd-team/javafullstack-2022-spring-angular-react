@@ -6,6 +6,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { ServicesComponent } from "./components/services/services.component";
 import { SignupComponent } from "./components/signup/signup.component";
+import { StoreComponent } from "./components/store/store.component";
 import { UserDashboardComponent } from "./components/user-dashboard/user-dashboard.component";
 import { UserDashboardGuard } from "./guards/user-dashboard.guard";
 
@@ -40,6 +41,10 @@ const routes:Routes=[
         path:'dashboard',
         component:UserDashboardComponent,
         canActivate:[UserDashboardGuard]
+    },
+    {
+        path:'store/:categoryId',
+        component:StoreComponent
     }
 ]
 

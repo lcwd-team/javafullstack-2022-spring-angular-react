@@ -1,0 +1,6 @@
+.product-img{
+    max-height: 200px;
+    width: auto!important;
+    object-fit: contain!important;
+    margin: 20px;
+}

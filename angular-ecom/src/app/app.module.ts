@@ -15,7 +15,9 @@ import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http"
 import { ToastrModule } from 'ngx-toastr';
 import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component'
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { StoreComponent } from './components/store/store.component';
+import { ProductComponent } from './components/product/product.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,9 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
     SignupComponent,
     ProfileComponent,
     CustomNavbarComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    StoreComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
