@@ -24,16 +24,16 @@ function CustomNavbar() {
         <div>
             <Navbar
                 color='light'
-
+                fixed='top'
                 expand="md"
-                className='px-5 shadow-sm'
+                className='px-5 shadow-sm '
             >
                 <NavbarBrand tag={ReactLink} to="/" >MyShop</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
                         <NavItem>
-                            <NavLink tag={ReactLink} to="/">Store</NavLink>
+                            <NavLink tag={ReactLink} to="/store/all">Store</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={ReactLink} to="/services">

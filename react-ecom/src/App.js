@@ -15,6 +15,7 @@ import CustomNavbar from "./components/CustomNavbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoutes from "./components/PrivateRoutes";
+import Store from "./components/Store";
 function App() {
   // const [x,setX]=useState(50)
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
 
         <Route path="/services" element={<Services />} />
+        <Route path="/store/:categoryId" element={<Store />} />
 
         <Route path="/user" element={<PrivateRoutes />}>
           <Route path="dashboard" element={<Dashboard />} />

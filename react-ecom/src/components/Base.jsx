@@ -6,7 +6,9 @@ function Base({children}) {
     <div>
         <CustomNavbar/>
 
-        {children}
+       <div  style={{marginTop:'62px'}}>
+       {children}
+       </div>
 
         
 
