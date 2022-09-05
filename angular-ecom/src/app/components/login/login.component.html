@@ -5,6 +5,9 @@
     <div class="col-md-6 offset-md-3">
       <div class="card mt-5 border border-0 shadow-sm">
         <div class="card-body">
+          <div class="alert alert-danger" *ngIf="showErrorMessage">
+            {{errorMessage}}
+          </div>
           <h3 class="my-3">Login here</h3>
 
           <form action="" (ngSubmit)="submitLoginRequest($event)">

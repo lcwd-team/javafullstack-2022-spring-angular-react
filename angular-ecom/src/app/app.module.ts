@@ -12,12 +12,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomNavbarComponent } from './components/custom-navbar/custom-navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import {HttpClientModule} from "@angular/common/http"
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http"
 import { ToastrModule } from 'ngx-toastr';
 import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { StoreComponent } from './components/store/store.component';
 import { ProductComponent } from './components/product/product.component'
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { CartComponent } from './components/cart/cart.component';
+import { JwtInterceptor } from './services/jwt.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,8 @@ import { ProductComponent } from './components/product/product.component'
     CustomNavbarComponent,
     UserDashboardComponent,
     StoreComponent,
-    ProductComponent
+    ProductComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +46,17 @@ import { ProductComponent } from './components/product/product.component'
     ToastrModule.forRoot({
       positionClass:'toast-bottom-center'
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    InfiniteScrollModule
     
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:JwtInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,7 +19,7 @@
             Price : <span class="fw-bold">₹ {{product.productPrice}} </span>
         </div>
         <div class="fuild-container mt-2 text-center">
-            <button class="btn btn-success btn-sm">Add to Card</button>
+            <button (click)="addToCardButtonClick(product)" class="btn btn-success btn-sm">Add to Card</button>
             <button class="btn btn-primary btn-sm ms-1">View Product</button>
         </div>
 

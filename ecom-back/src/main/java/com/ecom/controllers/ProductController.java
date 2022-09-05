@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/")
-@CrossOrigin("*")
+
 public class ProductController {
 
     @Autowired

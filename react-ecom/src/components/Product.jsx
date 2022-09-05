@@ -21,7 +21,7 @@ function Product({ product }) {
 
                     <CardText><span className="text-mutted">{product.category.title}</span></CardText>
 
-                    <h5>{product.productName}</h5>
+                    <h5>{product.productName}- {product.productId}</h5>
                     <CardText>
                         <span>{product.productDesc.slice(0,20)}....</span>
                     </CardText>

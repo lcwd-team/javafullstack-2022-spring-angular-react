@@ -1,48 +1,45 @@
 <div class="container-fluid">
+  <div class="row p-5">
+    <div class="col-md-3">
+      <h1>Categories</h1>
 
-    <div class="row p-5">
+      <div class="list-group border-0 shadow-sm">
+        <a
+          class="list-group-item border border-bottom-1"
+          routerLink="/store/all"
+        >
+          All
+        </a>
 
+        <a
+          [routerLink]="'/store/' + c.categoryId"
+          *ngFor="let c of categories"
+          href=""
+          class="list-group-item border border-bottom-1"
+        >
+          {{ c.title }}
+        </a>
+      </div>
+    </div>
 
-        <div class="col-md-3">
-            <h1>Categories</h1>
+    <div class="col-md-9">
+      <h1>Products</h1>
 
-            <div class="list-group border-0 shadow-sm">
-                <a  class="list-group-item border border-bottom-1" routerLink="/store/all"> All </a>
-               
-                <a  [routerLink]="'/store/'+c.categoryId" *ngFor="let c of categories" href="" class="list-group-item border border-bottom-1"> {{c.title}} </a>
-              
-            </div>
-
+      <div
+        class="row"
+        *ngIf="products"
+        infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="1000"
+        (scrolled)="onScroll()"
+      >
+        <div class="col-md-6 col-lg-4" *ngFor="let p of products.content">
+          <app-product [product]="p"  (productAddedEvent)="addToCart($event)" ></app-product>
         </div>
+      </div>
 
-        <div class="col-md-9">
-           
-           
-            <h1>Products</h1>
-            
-           
-
-            <div class="row" *ngIf="products">
-
-
-                <div class="col-md-6 col-lg-4" *ngFor="let p of products.content">
-
-                    <app-product  [product]="p"></app-product>
-
-                </div>
-
-                
-            </div>
-
-
-        </div>
-
-
+      <h1 class="text-center my-3" *ngIf="loading">Please products loading....</h1>
 
     </div>
-    
-
-
-
-
+  </div>
 </div>

@@ -5,37 +5,59 @@ import Product from './Product'
 import { loadProducts, loadProductsByCategory } from '../services/product-service'
 import { loadCategories } from '../services/category-serivce'
 import { Link, useParams } from 'react-router-dom'
+import InfiniteScroll from 'react-infinite-scroll-component'
 function Store() {
 
 
-  const {categoryId}=useParams()
+  const { categoryId } = useParams()
 
   const [categories, setCategories] = useState(null)
   const [productDetail, setProductDetails] = useState(null)
+  const [pageNumber, setPageNumber] = useState(0)
 
   useEffect(() => {
-    
-    
-    getProducts()  
-    
+
+
+    getProducts(pageNumber)
     getCategories()
-    
+
     console.log(categoryId)
   }, [categoryId])
 
-  const getProducts = () => {
 
-    let ob=null
-    if(categoryId==='all'){
-      ob= loadProducts()
-    }else{
-      ob=loadProductsByCategory(categoryId)  
+ 
+
+  useEffect(() => {
+    console.log(pageNumber)
+    getProducts(pageNumber)
+  }, [pageNumber])
+
+  const getProducts = (pageNumber) => {
+    let ob = null
+    if (categoryId === 'all') {
+      ob = loadProducts(pageNumber)
+    } else {
+      ob = loadProductsByCategory(categoryId, pageNumber)
     }
-   
-      ob.then(data => {
-        console.log(data);
+
+    ob.then(data => {
+      console.log(data);
+      if (productDetail) {
+
+        setProductDetails({
+          content: [...productDetail.content, ...data.content],
+          lastPage: data.lastPage,
+          pageNumber: data.pageNumber,
+          pageSize: data.pageSize,
+          totalElements: data.totalElements,
+          totalPages: data.totalPages
+        })
+
+      } else {
         setProductDetails(data)
-      })
+      }
+
+    })
       .catch(error => {
         console.log(error)
       })
@@ -52,6 +74,34 @@ function Store() {
       })
   }
 
+  const loadMoreComponent = () => {
+    console.log("loading more")
+    setPageNumber(pageNumber + 1)
+
+  }
+
+  const getInfiniteScrollWitContent = () => {
+    return (<InfiniteScroll
+      dataLength={productDetail.content.length}
+      next={loadMoreComponent}
+      hasMore={!productDetail.lastPage}
+      loader={<h4>Loading...</h4>}
+    >
+
+      <Row>
+        {
+          (productDetail) &&
+          productDetail.content.map((item, index) => (
+            <Col md="6" lg="4" key={index}>
+
+              <Product product={item} />
+
+            </Col>
+          ))
+        }
+      </Row>
+    </InfiniteScroll>)
+  }
 
   return (
     <Base>
@@ -65,11 +115,11 @@ function Store() {
             <h1>Categories</h1>
 
             <ListGroup>
-              <ListGroupItem action tag={Link}  to="/store/all">All</ListGroupItem>
+              <ListGroupItem action tag={Link} to="/store/all">All</ListGroupItem>
 
               {
                 (categories) && categories.map(cat => (
-                  <ListGroupItem action tag={Link} to={'/store/'+cat.categoryId} key={cat.categoryId}>{cat.title}</ListGroupItem>
+                  <ListGroupItem action tag={Link} to={'/store/' + cat.categoryId} key={cat.categoryId}>{cat.title}</ListGroupItem>
                 ))
               }
 
@@ -80,21 +130,9 @@ function Store() {
           <Col md="9">
             <h1>Products</h1>
 
-            <Row>
 
-              {
+            {productDetail && getInfiniteScrollWitContent()}
 
-                (productDetail) &&
-                productDetail.content.map((item) => (
-                  <Col md="6" lg="4" key={item.productId}>
-
-                    <Product product={item} />
-
-                  </Col>
-                ))
-              }
-
-            </Row>
 
           </Col>
 

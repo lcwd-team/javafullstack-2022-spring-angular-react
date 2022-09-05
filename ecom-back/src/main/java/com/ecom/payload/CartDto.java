@@ -1,13 +1,14 @@
 package com.ecom.payload;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class CartDto {
 	private int cartId;
 	private UserDto user;
 
-	private Set<CartItemDto> items = new HashSet<>();
+	private Set<CartItemDto> items = new LinkedHashSet<>();
 
 	public int getCartId() {
 		return cartId;

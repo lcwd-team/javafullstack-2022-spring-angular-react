@@ -14,7 +14,6 @@ import com.ecom.services.CategoryService;
 
 @RestController
 @RequestMapping("/categories")
-@CrossOrigin("*")
 public class CategoryController {
 
 	@Autowired

@@ -1,5 +1,6 @@
+import { query } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHelperService } from 'src/app/services/auth-helper.service';
 import { UserService } from 'src/app/services/user.service';
@@ -17,15 +18,32 @@ export class LoginComponent implements OnInit {
     password:''
   }
 
+  showErrorMessage=false
+  errorMessage=''
+
   constructor(
     private toast:ToastrService,
     private userService:UserService,
     private authHelper:AuthHelperService,
-    private router:Router
+    private router:Router,
+    private route:ActivatedRoute
     
     ) { }
 
   ngOnInit(): void {
+
+    this.route.queryParams.subscribe((queryParam:any)=>{
+      
+      if(queryParam.message){
+        this.showErrorMessage=true
+        this.errorMessage=queryParam.message
+      }else{
+        this.showErrorMessage=false
+        this.errorMessage=''
+      }
+      
+    })
+
   }
 
 
