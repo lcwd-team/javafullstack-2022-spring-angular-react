@@ -94,11 +94,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public FilterRegistrationBean corsFilter() {
-
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
         CorsConfiguration configuration = new CorsConfiguration();
-
         configuration.setAllowCredentials(true);
         configuration.addAllowedOriginPattern("*");
         configuration.addAllowedHeader("Authorization");
@@ -110,11 +107,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.addAllowedMethod("PUT");
         configuration.addAllowedMethod("OPTIONS");
         configuration.setMaxAge(3600L);
-
-
         source.registerCorsConfiguration("/**", configuration);
-
-
         FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
         bean.setOrder(-110);
         return bean;

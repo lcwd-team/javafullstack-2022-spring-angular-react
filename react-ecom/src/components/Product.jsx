@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Card, CardBody, CardText, Container } from 'reactstrap'
 import { BASE_URL } from '../services/axios-helper'
 
-function Product({ product }) {
+function Product({ product, addToCart }) {
 
     let imageStyle = {
         width: '100%',
@@ -11,11 +11,11 @@ function Product({ product }) {
         margin: '15px 0'
     }
 
-    const getProductHtml = ()=>{
-        return(
+    const getProductHtml = () => {
+        return (
             <Card className='mt-2 border-0 shadow-sm' >
 
-                <img style={imageStyle} src={BASE_URL+'/products/images/'+product.productId} alt="" />
+                <img style={imageStyle} src={BASE_URL + '/products/images/' + product.productId} alt="" />
 
                 <CardBody>
 
@@ -23,7 +23,7 @@ function Product({ product }) {
 
                     <h5>{product.productName}- {product.productId}</h5>
                     <CardText>
-                        <span>{product.productDesc.slice(0,20)}....</span>
+                        <span>{product.productDesc.slice(0, 20)}....</span>
                     </CardText>
 
                     <CardText>
@@ -31,7 +31,7 @@ function Product({ product }) {
                     </CardText>
 
                     <Container className='text-center'>
-                        <Button size='sm' color='success' >Add to Cart</Button>
+                        <Button onClick={(event) => addToCart(product)} size='sm' color='success' >Add to Cart</Button>
                         <Button size='sm' className='ms-2' color='danger' >View Product</Button>
                     </Container>
 

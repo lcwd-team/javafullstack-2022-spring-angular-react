@@ -16,6 +16,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoutes from "./components/PrivateRoutes";
 import Store from "./components/Store";
+import Cart from "./components/Cart";
 function App() {
   // const [x,setX]=useState(50)
 
@@ -39,6 +40,7 @@ function App() {
 
         <Route path="/user" element={<PrivateRoutes />}>
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="cart" element={<Cart />} />
 
         </Route>
       </Routes>
