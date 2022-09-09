@@ -23,6 +23,7 @@
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.0",
     "ngx-infinite-scroll": "^14.0.0",
+    "ngx-progressbar": "^9.0.0",
     "ngx-toastr": "^15.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

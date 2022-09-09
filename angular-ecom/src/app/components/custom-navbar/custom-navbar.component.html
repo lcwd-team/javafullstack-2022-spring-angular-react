@@ -43,7 +43,7 @@
           <a class="nav-link">Contact Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/cart">Cart ( 10 )</a>
+          <a class="nav-link" routerLink="/cart">Cart ( <b>{{ cart ? cart.items.length:0 }}</b> )</a>
         </li>
       </ul>
 
@@ -57,8 +57,14 @@
       </ul>
       <ul class="navbar-nav" *ngIf="isLogin">
         <li class="nav-item">
+          <a class="nav-link" routerLink="/orders">Orders</a>
+        </li>
+
+
+        <li class="nav-item">
           <a class="nav-link" routerLink="/dashboard">{{user.name}}</a>
         </li>
+        
         <li class="nav-item">
           <a class="nav-link" (click)="logoutUser()" >Logout</a>
         </li>

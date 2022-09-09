@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="row mt-2" *ngIf="orders">
+    <div class="col-md-12">
+      <h1>Orders ( {{ orders.length }} )</h1>
+
+      <div
+        class="card mt-2 shadow-sm border-3"
+        [ngClass]="
+          order.paymentStatus == 'NOT PAID' ? 'border-danger' : 'border-success'
+        "
+        *ngFor="let order of orders"
+      >
+        <div class="card-body">
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <div class="card-text">
+                ORDER NUMBER : <b>MYSHOP{{ order.orderId }}</b>
+              </div>
+            </div>
+            <div class="col-md-6">
+              CREATED AT : <b>{{ getFormattedDate(order.orderCreated) }} </b>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <div class="card-text">
+                ORDER STATUS : <b>{{ order.orderStatus }}</b>
+              </div>
+            </div>
+            <div class="col-md-6">
+              AMOUNT : ₹ <b>{{ order.orderAmount }} </b>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <div class="card-text">
+                PAYMENT STATUS : <b>{{ order.paymentStatus }}</b>
+              </div>
+            </div>
+            <div class="col-md-6">
+              ORDER DELIVERED:
+              <b>{{
+                order.orderDelivered ? order.orderDelivered : "NOT DELIVERED"
+              }}</b>
+            </div>
+          </div>
+
+          <div class="cart-text">
+            {{ order.billingAddress }}
+          </div>
+        </div>
+        <div class="card-footer text-center">
+          <button
+            class="btn btn-primary btn-sm"
+            (click)="openModal(content, order.orderId)"
+          >
+            View Products
+          </button>
+          <button
+            class="btn btn-success ms-2 btn-sm"
+            *ngIf="order.paymentStatus == 'NOT PAID'"
+          >
+            Pay to Process
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal html  -->
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Products</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="card border-0 mt-3 shadow-sm" *ngFor="let item of selectedOrder.items">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <h5>{{ item.product.productName }}</h5>
+            <div class="cart-text">
+              Quantity : <b>{{ item.quantity }}</b>
+            </div>
+
+            <div class="cart-text">
+              Price : <b> ₹ {{ item.totalProductPrice }}</b>
+            </div>
+          </div>
+
+          <div class="col-md-4 text-center">
+            <img
+              [src]="baseUrl + '/products/images/' + item.product.productId"
+              class="img-fluid product-img"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

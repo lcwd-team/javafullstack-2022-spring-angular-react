@@ -4,6 +4,7 @@ import { AboutComponent } from "./components/about/about.component";
 import { CartComponent } from "./components/cart/cart.component";
 import { HomeComponent } from "./components/home/home.component";
 import { LoginComponent } from "./components/login/login.component";
+import { OrdersComponent } from "./components/orders/orders.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { ServicesComponent } from "./components/services/services.component";
 import { SignupComponent } from "./components/signup/signup.component";
@@ -51,6 +52,11 @@ const routes:Routes=[
     {
         path:'cart',
         component:CartComponent,
+        canActivate:[UserDashboardGuard]
+    },
+    {
+        path:"orders",
+        component:OrdersComponent,
         canActivate:[UserDashboardGuard]
     }
 

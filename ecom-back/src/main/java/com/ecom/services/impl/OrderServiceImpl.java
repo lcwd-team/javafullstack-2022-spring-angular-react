@@ -26,92 +26,99 @@ import com.ecom.services.OrderService;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-	@Autowired
-	private OrderRepository orderRepository;
+    @Autowired
+    private OrderRepository orderRepository;
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	@Autowired
-	private CartRepository cartRepository;
+    @Autowired
+    private CartRepository cartRepository;
 
-	@Autowired
-	private ModelMapper mapper;
+    @Autowired
+    private ModelMapper mapper;
 
-	@Override
-	public OrderDto createOrder(OrderRequest request, String username) {
+    @Override
+    public OrderDto createOrder(OrderRequest request, String username) {
 
-		User user = this.userRepository.findByEmail(username).orElseThrow(ResourceNotFoundException::new);
-		int cartId = request.getCartId();
-		String address = request.getAddress();
+        User user = this.userRepository.findByEmail(username).orElseThrow(ResourceNotFoundException::new);
+        int cartId = request.getCartId();
+        String address = request.getAddress();
 
-		Cart cart = this.cartRepository.findById(cartId).orElseThrow(ResourceNotFoundException::new);
+        Cart cart = this.cartRepository.findById(cartId).orElseThrow(ResourceNotFoundException::new);
 
-		Set<CartItem> items = cart.getItems();
+        Set<CartItem> items = cart.getItems();
 
-		Order order = new Order();
-		AtomicReference<Double> totalOrderPrice = new AtomicReference<>(0.0);
-		Set<OrderItem> orderItems = items.stream().map((cartItem) -> {
+        Order order = new Order();
+        AtomicReference<Double> totalOrderPrice = new AtomicReference<>(0.0);
+        Set<OrderItem> orderItems = items.stream().map((cartItem) -> {
 
-			OrderItem orderItem = new OrderItem();
-			orderItem.setProduct(cartItem.getProduct());
-			orderItem.setQuantity(cartItem.getQuantity());
-			orderItem.setTotalProductPrice(cartItem.getTotalProductPrice());
-			orderItem.setOrder(order);
-			totalOrderPrice.set(totalOrderPrice.get() + orderItem.getTotalProductPrice());
+            OrderItem orderItem = new OrderItem();
+            orderItem.setProduct(cartItem.getProduct());
+            orderItem.setQuantity(cartItem.getQuantity());
+            orderItem.setTotalProductPrice(cartItem.getTotalProductPrice());
+            orderItem.setOrder(order);
+            totalOrderPrice.set(totalOrderPrice.get() + orderItem.getTotalProductPrice());
 
-			//
-			int productId = orderItem.getProduct().getProductId();
-			// product:- fetch
+            //
+            int productId = orderItem.getProduct().getProductId();
+            // product:- fetch
 
-			// update the product quantity
+            // update the product quantity
 
-			// save the product
+            // save the product
 
-			return orderItem;
+            return orderItem;
 
-		}).collect(Collectors.toSet());
+        }).collect(Collectors.toSet());
 
-		order.setItems(orderItems);
-		order.setBillingAddress(address);
-		order.setPaymentStatus("NOT PAID");
-		order.setOrderAmount(totalOrderPrice.get());
-		order.setOrderCreated(new Date());
-		order.setOrderDelivered(null);
-		order.setOrderStatus("CREATED");
-		order.setUser(user);
+        order.setItems(orderItems);
+        order.setBillingAddress(address);
+        order.setPaymentStatus("NOT PAID");
+        order.setOrderAmount(totalOrderPrice.get());
+        order.setOrderCreated(new Date());
+        order.setOrderDelivered(null);
+        order.setOrderStatus("CREATED");
+        order.setUser(user);
 
-		Order savedOrder = this.orderRepository.save(order);
+        Order savedOrder = this.orderRepository.save(order);
 
-		cart.getItems().clear();
+        cart.getItems().clear();
 
-		this.cartRepository.save(cart);
+        this.cartRepository.save(cart);
 
-		return this.mapper.map(savedOrder, OrderDto.class);
-	}
+        return this.mapper.map(savedOrder, OrderDto.class);
+    }
 
-	@Override
-	public OrderDto updateOrder(OrderDto orderDto, int orderId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public OrderDto updateOrder(OrderDto orderDto, int orderId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@Override
-	public void deleteOrder(int orderId) {
-		// TODO Auto-generated method stub
+    @Override
+    public void deleteOrder(int orderId) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	public List<OrderDto> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<OrderDto> getAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@Override
-	public OrderDto get(int orderId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public OrderDto get(int orderId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<OrderDto> getOrderOfUser(String username) {
+        User user = this.userRepository.findByEmail(username).orElseThrow(() -> new ResourceNotFoundException("User not found with given user"));
+        List<Order> ordersOfUser = this.orderRepository.findByUser(user);
+        return ordersOfUser.stream().map(order -> this.mapper.map(order, OrderDto.class)).collect(Collectors.toList());
+    }
 
 }

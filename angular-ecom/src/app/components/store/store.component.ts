@@ -124,7 +124,7 @@ export class StoreComponent implements OnInit {
       next:data=>{
         console.log(data);
         this.toast.success("Item added to card")
-        
+        this.cartService.cartChanged(data)
       },
       error:error=>{
         console.log(error);

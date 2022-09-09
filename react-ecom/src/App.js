@@ -17,6 +17,8 @@ import "react-toastify/dist/ReactToastify.css";
 import PrivateRoutes from "./components/PrivateRoutes";
 import Store from "./components/Store";
 import Cart from "./components/Cart";
+import { CartProvider } from "./context";
+
 function App() {
   // const [x,setX]=useState(50)
 
@@ -25,26 +27,27 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <ToastContainer position="bottom-center" />
+    <CartProvider>
+      <BrowserRouter>
+        <ToastContainer position="bottom-center" />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/singup" element={<Signup />} />
-        <Route path="/profile" element={<Profile />} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/singup" element={<Signup />} />
+          <Route path="/profile" element={<Profile />} />
 
-        <Route path="/services" element={<Services />} />
-        <Route path="/store/:categoryId" element={<Store />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/store/:categoryId" element={<Store />} />
 
-        <Route path="/user" element={<PrivateRoutes />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="cart" element={<Cart />} />
-
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          <Route path="/user" element={<PrivateRoutes />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="cart" element={<Cart />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 

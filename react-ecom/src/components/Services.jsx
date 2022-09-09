@@ -1,15 +1,18 @@
 import React from 'react'
+import { useContext } from 'react'
+
 import Base from './Base'
 
 function Services() {
-    return (
+
+   return (
 
 
         <Base>
 
-
+          
             <div>
-
+               
                 <div>This is services component</div>
                 <p>This is my paragrap</p>
 

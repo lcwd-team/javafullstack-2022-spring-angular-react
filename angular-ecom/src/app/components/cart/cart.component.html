@@ -1,42 +1,67 @@
-<div class="container" *ngIf="cart">
-   <div class="row mt-2">
-    <div class="col-md-12">
-        <h1>Cart Items ( {{cart.items.length}} )</h1>
-
-        <br>
-
-        <div class="card mt-2 border-0" *ngFor="let item of cart.items">
-            <div class="card-body">
-               <div class="row">
-                <div class="col-md-8">
-                    <h5>{{item.product.productName}}</h5>
-                    <div class="cart-text">
-                        Quantity : <b>{{item.quantity}}</b>
-    
+<div *ngIf="!orderProceed">
+    <div class="container" *ngIf="cart">
+        <div class="row mt-2">
+         <div class="col-md-12">
+             <h1>Cart Items ( {{cart.items.length}} )</h1>
+     
+             <br>
+     
+             <div class="card mt-2 border-0" *ngFor="let item of cart.items">
+                 <div class="card-body">
+                    <div class="row">
+                     <div class="col-md-8">
+                         <h5>{{item.product.productName}}</h5>
+                         <div class="cart-text">
+                             Quantity : <b>{{item.quantity}}</b>
+         
+                         </div>
+                         <div class="container-fluid ps-0 py-3">
+                             <button (click)="quantityChange(item.product.productId,(item.quantity+1))" class="btn btn-primary btn-sm">Increase Quantity</button>
+                             <button (click)="quantityChange(item.product.productId,(item.quantity-1))" class="btn btn-dark ms-2 btn-sm">Decrease Quantity</button>
+                             <button (click)="removeItem(item)" class="btn btn-danger ms-2 btn-sm">Remove Item</button>
+                         </div>
+                         <div class="cart-text">
+                             Price  : <b> ₹ {{item.totalProductPrice}}</b>
+         
+                         </div>
+                     </div>
+     
+                     <div class="col-md-4 text-center">
+                        <img  [src]="baseUrl+'/products/images/'+item.product.productId"  class="img-fluid product-img" alt="">
+                     </div>
                     </div>
-                    <div class="container-fluid ps-0 py-3">
-                        <button (click)="quantityChange(item.product.productId,(item.quantity+1))" class="btn btn-primary btn-sm">Increase Quantity</button>
-                        <button (click)="quantityChange(item.product.productId,(item.quantity-1))" class="btn btn-dark ms-2 btn-sm">Decrease Quantity</button>
-                        <button (click)="removeItem(item)" class="btn btn-danger ms-2 btn-sm">Remove Item</button>
-                    </div>
-                    <div class="cart-text">
-                        Price  : <b> ₹ {{item.totalProductPrice}}</b>
-    
-                    </div>
-                </div>
+                 </div>
+             </div>
+     
+     
+             <div class="container mt-3 border-0 text-center" *ngIf="cart.items.length>0">
+                 <button (click)="orderProceed=true" class="btn btn-success btn-lg">Click to proceed</button>
+             </div>
+     
+         </div>
+        </div>
+     </div>
+</div>
+<div *ngIf="orderProceed && !redirect" class="mt-4">
 
-                <div class="col-md-4 text-center">
-                   <img  [src]="baseUrl+'/products/images/'+item.product.productId"  class="img-fluid product-img" alt="">
-                </div>
-               </div>
+    <div class="container">
+       <div class="row">
+        <div class="col-md-12">
+            <h1>Enter shipping added with pin code</h1>
+            <div class="form-goup mt-3">
+                <textarea [(ngModel)]="order.address" name="" id="" placeholder="Enter you address here" rows="10" class="form-control"></textarea>
             </div>
+            <p class="p-2 text-danger">We will use your profile contact number to contact you. for any query drop a mail <b>learncodewithdurgesh@gmail.com.</b> </p>
+           
         </div>
-
-
-        <div class="container mt-3 border-0 text-center">
-            <button class="btn btn-success btn-lg">Click to proceed</button>
+        <div class="container text-center">
+            <button (click)="createOrderAndProceedForPayment()" class="btn btn-success btn-lg">Proceed for payment</button>
         </div>
-
+       </div>
     </div>
-   </div>
+
+</div>
+
+<div class="container mt-3" *ngIf="redirect">
+   <h1> Readirecting to payment page.....</h1>
 </div>

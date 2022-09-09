@@ -7,9 +7,14 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductService {
 
+  
+
   constructor(
     private http: HttpClient
-  ) { }
+  ) { 
+
+
+  }
 
   loadProducts(pageSize: number = 9, pageNumber: number = 0, sortBy: any = 'productId', sortDir: any = 'desc') {
     return this.http.get(`${environment.baseUrl}/products?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}&sortDir=${sortDir}`)

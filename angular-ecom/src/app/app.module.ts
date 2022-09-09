@@ -21,7 +21,9 @@ import { ProductComponent } from './components/product/product.component'
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CartComponent } from './components/cart/cart.component';
 import { JwtInterceptor } from './services/jwt.interceptor';
-
+import { NgProgressModule } from 'ngx-progressbar';
+import {NgProgressHttpModule} from "ngx-progressbar/http";
+import { OrdersComponent } from './components/orders/orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,8 @@ import { JwtInterceptor } from './services/jwt.interceptor';
     UserDashboardComponent,
     StoreComponent,
     ProductComponent,
-    CartComponent
+    CartComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,9 @@ import { JwtInterceptor } from './services/jwt.interceptor';
       positionClass:'toast-bottom-center'
     }),
     BrowserAnimationsModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgProgressModule,
+    NgProgressHttpModule
     
   ],
   providers: [

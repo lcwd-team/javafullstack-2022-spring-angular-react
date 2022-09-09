@@ -1,10 +1,15 @@
+import { useContext } from "react";
+
 import Base from "./Base";
-const About=()=>{
+const About = () => {
+
     return (
-       <Base>
-       
-       <h1>This is about component</h1>
-       </Base>
+        <Base>
+            <div>
+
+                <h1>This is about page</h1>   
+            </div>
+        </Base>
     )
 }
 
