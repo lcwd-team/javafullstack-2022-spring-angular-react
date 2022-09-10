@@ -1,6 +1,6 @@
 package com.ecom.payload;
 
-public class CartItemDto {
+public class CartItemDto implements Comparable<CartItemDto> {
 	
 	
 	
@@ -43,6 +43,10 @@ public class CartItemDto {
 	public void setTotalProductPrice(double totalProductPrice) {
 		this.totalProductPrice = totalProductPrice;
 	}
-	
-	
+
+
+	@Override
+	public int compareTo(CartItemDto o) {
+		return this.getCardItemid()-o.getCardItemid();
+	}
 }

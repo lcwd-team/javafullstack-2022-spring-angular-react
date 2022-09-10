@@ -18,6 +18,7 @@ import PrivateRoutes from "./components/PrivateRoutes";
 import Store from "./components/Store";
 import Cart from "./components/Cart";
 import { CartProvider } from "./context";
+import Orders from "./components/Orders";
 
 function App() {
   // const [x,setX]=useState(50)
@@ -44,6 +45,7 @@ function App() {
           <Route path="/user" element={<PrivateRoutes />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="orders" element={<Orders />} />
           </Route>
         </Routes>
       </BrowserRouter>

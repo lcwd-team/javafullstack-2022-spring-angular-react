@@ -34,7 +34,7 @@ function CustomNavbar() {
         return (
 
             < div >
-               
+
                 <Navbar
                     color='light'
                     fixed='top'
@@ -102,6 +102,12 @@ function CustomNavbar() {
                             {
                                 (checkLogin()) && (
                                     <>
+
+                                        <NavItem>
+                                            <NavLink tag={ReactLink} to="/user/orders"  >
+                                               Orders
+                                            </NavLink>
+                                        </NavItem>
                                         <NavItem>
                                             <NavLink tag={ReactLink} to="/user/dashboard"  >
                                                 {getCurrentUser().name}
