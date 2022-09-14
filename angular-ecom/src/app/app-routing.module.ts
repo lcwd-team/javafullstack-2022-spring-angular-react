@@ -10,54 +10,59 @@ import { ServicesComponent } from "./components/services/services.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { StoreComponent } from "./components/store/store.component";
 import { UserDashboardComponent } from "./components/user-dashboard/user-dashboard.component";
+import { ViewProductComponent } from "./components/view-product/view-product.component";
 import { UserDashboardGuard } from "./guards/user-dashboard.guard";
 
 
-const routes:Routes=[
+const routes: Routes = [
 
     {
-        path:'login',
-        component:LoginComponent
+        path: 'login',
+        component: LoginComponent
     },
     {
-        path:'signup',
-        component:SignupComponent
+        path: 'signup',
+        component: SignupComponent
     },
     {
-        path:'about',
-        component:AboutComponent
+        path: 'about',
+        component: AboutComponent
     },
     {
-        path:'user-profile',
-        component:ProfileComponent
+        path: 'user-profile',
+        component: ProfileComponent
     },
     {
-        path:'services',
-        component:ServicesComponent
+        path: 'services',
+        component: ServicesComponent
     },
     {
-        path:'home',
-        component:HomeComponent
+        path: 'home',
+        component: HomeComponent
     },
     {
-        path:'dashboard',
-        component:UserDashboardComponent,
-        canActivate:[UserDashboardGuard]
+        path: 'dashboard',
+        component: UserDashboardComponent,
+        canActivate: [UserDashboardGuard]
     },
     {
-        path:'store/:categoryId',
-        component:StoreComponent
+        path: 'store/:categoryId',
+        component: StoreComponent
+    }
+    , {
+        path: 'view-product/:productId',
+        component: ViewProductComponent
     }
     ,
     {
-        path:'cart',
-        component:CartComponent,
-        canActivate:[UserDashboardGuard]
+        path: 'cart',
+        component: CartComponent,
+        canActivate: [UserDashboardGuard]
     },
     {
-        path:"orders",
-        component:OrdersComponent,
-        canActivate:[UserDashboardGuard]
+        path: "orders",
+        component: OrdersComponent,
+        canActivate: [UserDashboardGuard]
     }
 
 ]
@@ -65,10 +70,10 @@ const routes:Routes=[
 
 
 @NgModule({
-    imports:[RouterModule.forRoot(routes)],
-    exports:[RouterModule]
-   }
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+}
 )
-export class AppRoutingModule{
+export class AppRoutingModule {
 
 }

@@ -11,7 +11,7 @@
         </div>
         <h5>{{product.productName}}</h5>
         <div class="card-text">
-            <p>{{product.productDesc | slice: 0: 25 }}....</p>
+            <p [innerHtml]="product.productDesc.slice(0,25)+'.....'"></p>
         </div>
         <div class="divider"></div>
 
@@ -20,7 +20,7 @@
         </div>
         <div class="fuild-container mt-2 text-center">
             <button (click)="addToCardButtonClick(product)" class="btn btn-success btn-sm">Add to Card</button>
-            <button class="btn btn-primary btn-sm ms-1">View Product</button>
+            <button class="btn btn-primary btn-sm ms-1" [routerLink]="'/view-product/'+product.productId" >View Product</button>
         </div>
 
     </div>

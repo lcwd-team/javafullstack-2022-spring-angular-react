@@ -24,5 +24,8 @@ export class ProductService {
     return this.http.get(`${environment.baseUrl}/categories/${categoryId}/products?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}&sortDir=${sortDir}`)
   }
 
+  loadProductById(productId:number){
+    return this.http.get(`${environment.baseUrl}/products/${productId}`)
+  }
 
 }

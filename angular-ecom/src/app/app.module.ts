@@ -24,6 +24,7 @@ import { JwtInterceptor } from './services/jwt.interceptor';
 import { NgProgressModule } from 'ngx-progressbar';
 import {NgProgressHttpModule} from "ngx-progressbar/http";
 import { OrdersComponent } from './components/orders/orders.component';
+import { ViewProductComponent } from './components/view-product/view-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { OrdersComponent } from './components/orders/orders.component';
     StoreComponent,
     ProductComponent,
     CartComponent,
-    OrdersComponent
+    OrdersComponent,
+    ViewProductComponent
   ],
   imports: [
     BrowserModule,

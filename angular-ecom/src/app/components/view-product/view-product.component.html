@@ -1,0 +1,48 @@
+<div class="container" *ngIf="productDetail">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <div class="card mt-2 border-0 shadow-sm">
+        <div class="card-body">
+          <h1 *ngIf="!productDetail.stock" class="text-center my-5 text-danger">
+            Product is out of Stock
+          </h1>
+          <div *ngIf="productDetail.stock">
+            <h1>{{ productDetail.productName }}</h1>
+            <p class="text-muted">{{ productDetail.category.title }}</p>
+
+            <div class="container text-center my-3">
+              <img
+                class="img-fluid product-image"
+                [src]="baseUrl + '/products/images/' + productDetail.productId"
+                alt=""
+              />
+            </div>
+
+            <div class="card-text">
+              Price : <b>₹ {{ productDetail.productPrice }}</b>
+            </div>
+
+            <div [innerHTML]="productDetail.productDesc"></div>
+
+            <div class="container text-center">
+              <div class="fuild-container mt-2 text-center">
+                <button
+                 (click)="addToCart()"
+                  class="btn btn-success btn-lg"
+                >
+                  Add to Card
+                </button>
+                <button
+                  class="btn btn-primary btn-lg ms-1"
+                  [routerLink]="'/store/all'"
+                >
+                 Back
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
