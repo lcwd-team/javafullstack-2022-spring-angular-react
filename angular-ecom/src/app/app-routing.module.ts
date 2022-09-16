@@ -12,6 +12,11 @@ import { StoreComponent } from "./components/store/store.component";
 import { UserDashboardComponent } from "./components/user-dashboard/user-dashboard.component";
 import { ViewProductComponent } from "./components/view-product/view-product.component";
 import { UserDashboardGuard } from "./guards/user-dashboard.guard";
+import { AddProductComponent } from "./pages/admin/add-product/add-product.component";
+import { AdminDashboardComponent } from "./pages/admin/admin-dashboard/admin-dashboard.component";
+import { AdminHomeComponent } from "./pages/admin/admin-home/admin-home.component";
+import { UpdateProductComponent } from "./pages/admin/update-product/update-product.component";
+import { ViewProductsComponent } from "./pages/admin/view-products/view-products.component";
 
 
 const routes: Routes = [
@@ -63,6 +68,31 @@ const routes: Routes = [
         path: "orders",
         component: OrdersComponent,
         canActivate: [UserDashboardGuard]
+    }, {
+        path: 'admin-dashboard',
+        component: AdminDashboardComponent,
+        children: [
+            {
+                path: '',
+                component: AdminHomeComponent,
+                pathMatch: 'full'
+
+            },
+            {
+                path: 'add-product',
+                component: AddProductComponent,
+
+            },
+            {
+                path: 'products',
+                component: ViewProductsComponent,
+
+            },
+            {
+                path: 'update-product/:productIds',
+                component: UpdateProductComponent
+            }
+        ]
     }
 
 ]

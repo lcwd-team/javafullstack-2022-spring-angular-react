@@ -19,6 +19,15 @@ import Store from "./components/Store";
 import Cart from "./components/Cart";
 import { CartProvider } from "./context";
 import Orders from "./components/Orders";
+import ViewProduct from "./components/ViewProduct";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminHome from "./pages/admin/AdminHome";
+import AddProduct from "./pages/admin/AddProduct";
+import ViewProducts from "./pages/admin/ViewProducts";
+import ViewCategories from "./pages/admin/ViewCategories";
+import AddCategory from "./pages/admin/AddCategory";
+import ManageOrder from "./pages/admin/ManageOrder";
+import ManageUser from "./pages/admin/ManageUser";
 
 function App() {
   // const [x,setX]=useState(50)
@@ -41,11 +50,22 @@ function App() {
 
           <Route path="/services" element={<Services />} />
           <Route path="/store/:categoryId" element={<Store />} />
+          <Route path="/view-product/:productId" element={<ViewProduct />} />
 
           <Route path="/user" element={<PrivateRoutes />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="cart" element={<Cart />} />
             <Route path="orders" element={<Orders />} />
+          </Route>
+
+          <Route path="/admin-dashboard" element={<AdminDashboard />}>
+            <Route path="home" element={<AdminHome/>}/>
+            <Route path="add-product" element={<AddProduct/>}/>
+            <Route path="products" element={<ViewProducts/>}/>
+            <Route path="categories" element={<ViewCategories/>}/>
+            <Route path="add-category" element={<AddCategory/>}/>
+            <Route path="orders" element={<ManageOrder/>}/>
+            <Route path="users" element={<ManageUser/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

@@ -25,6 +25,11 @@ import { NgProgressModule } from 'ngx-progressbar';
 import {NgProgressHttpModule} from "ngx-progressbar/http";
 import { OrdersComponent } from './components/orders/orders.component';
 import { ViewProductComponent } from './components/view-product/view-product.component';
+import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { AddProductComponent } from './pages/admin/add-product/add-product.component';
+import { ViewProductsComponent } from './pages/admin/view-products/view-products.component';
+import { UpdateProductComponent } from './pages/admin/update-product/update-product.component';
+import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +45,12 @@ import { ViewProductComponent } from './components/view-product/view-product.com
     ProductComponent,
     CartComponent,
     OrdersComponent,
-    ViewProductComponent
+    ViewProductComponent,
+    AdminDashboardComponent,
+    AddProductComponent,
+    ViewProductsComponent,
+    UpdateProductComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule,

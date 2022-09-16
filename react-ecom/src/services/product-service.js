@@ -14,7 +14,7 @@ export const loadProducts = (
 };
 
 export const loadProductsByCategory = (
-  categoryId,  
+  categoryId,
   pageNumber = "0",
   pageSize = "9",
   sortBy = "productId",
@@ -25,4 +25,8 @@ export const loadProductsByCategory = (
       `/categories/${categoryId}/products?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}&sortDir=${sortBy}`
     )
     .then((response) => response.data);
+};
+
+export const getProduct = (productId) => {
+  return http.get(`/products/${productId}`).then((res) => res.data);
 };

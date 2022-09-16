@@ -6,14 +6,14 @@ import { loadProducts, loadProductsByCategory } from '../services/product-servic
 import { loadCategories } from '../services/category-serivce'
 import { Link, useParams } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import {addItemToCart as addCart} from '../services/cart-service'
+import { addItemToCart as addCart } from '../services/cart-service'
 import { toast } from 'react-toastify'
 import { useContext } from 'react'
 import { context1 } from '../context'
 
 function Store() {
 
-  const value=useContext(context1)
+  const value = useContext(context1)
 
 
   const { categoryId } = useParams()
@@ -21,31 +21,31 @@ function Store() {
   const [categories, setCategories] = useState(null)
   const [productDetail, setProductDetails] = useState(null)
   const [pageNumber, setPageNumber] = useState({
-    count:0
+    count: 0
   })
 
-  const [flag,setFlag]=useState(true)
+  const [flag, setFlag] = useState(true)
 
-  useEffect(() => { 
-       
-    if(flag){
+  useEffect(() => {
+
+    if (flag) {
       console.log("Initial time")
       getCategories()
       setFlag(false)
-    } else{
+    } else {
       console.log("Not initial time")
       setProductDetails(null)
-      setPageNumber({count:0})
-      
-    }   
+      setPageNumber({ count: 0 })
+
+    }
     console.log(categoryId)
   }, [categoryId])
 
 
- 
+
 
   useEffect(() => {
-    console.log("Page number :"+pageNumber.count)
+    console.log("Page number :" + pageNumber.count)
     getProducts(pageNumber.count)
   }, [pageNumber])
 
@@ -94,22 +94,27 @@ function Store() {
 
   const loadMoreComponent = () => {
     console.log("loading more")
-    setPageNumber({ count:pageNumber.count+1 })
+    setPageNumber({ count: pageNumber.count + 1 })
 
   }
 
   //add item to card
-  const addItemToCart=(product)=>{
+  const addItemToCart = (product) => {
+
+    if (!product.stock) {
+      toast.error("product is not in stock...")
+      return;
+    }
     console.log(product)
-    addCart(product.productId,1)
-    .then((data)=>{
-      console.log(data)
-      value.setCart(data)
-      toast.success("Item Added to Cart")
-    }).catch(error=>{
-      console.log(error)
-    })
-    
+    addCart(product.productId, 1)
+      .then((data) => {
+        console.log(data)
+        value.setCart(data)
+        toast.success("Item Added to Cart")
+      }).catch(error => {
+        console.log(error)
+      })
+
   }
 
   const getInfiniteScrollWitContent = () => {

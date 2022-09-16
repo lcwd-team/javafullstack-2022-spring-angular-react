@@ -104,6 +104,11 @@ function CustomNavbar() {
                                     <>
 
                                         <NavItem>
+                                            <NavLink tag={ReactLink} to="/admin-dashboard/home"  >
+                                               Admin Dashboard
+                                            </NavLink>
+                                        </NavItem>
+                                        <NavItem>
                                             <NavLink tag={ReactLink} to="/user/orders"  >
                                                Orders
                                             </NavLink>

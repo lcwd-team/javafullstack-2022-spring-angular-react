@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Button, Card, CardBody, CardText, Container } from 'reactstrap'
 import { BASE_URL } from '../services/axios-helper'
 
@@ -31,8 +32,8 @@ function Product({ product, addToCart }) {
                     </CardText>
 
                     <Container className='text-center'>
-                        <Button onClick={(event) => addToCart(product)} size='sm' color='success' >Add to Cart</Button>
-                        <Button size='sm' className='ms-2' color='danger' >View Product</Button>
+                        <Button  onClick={(event) => addToCart(product)} size='sm' color={product.stock?'success':'danger'} >  {product.stock?'Add to Cart':'Out of Stock'} </Button>
+                        <Button tag={Link} to={'/view-product/'+product.productId} size='sm' className='ms-2' color='warning' >View Product</Button>
                     </Container>
 
                 </CardBody>

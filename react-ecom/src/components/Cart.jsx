@@ -30,7 +30,9 @@ function Cart() {
     const [orderCreated,setOrderCreated]=useState(false)
 
     useEffect(() => {
-        setTimeout(() => {
+
+     
+       
             getCart().then(data => {
                 setCart(data)
                 value.setCart(data)
@@ -38,7 +40,7 @@ function Cart() {
             }).catch(error => {
                 console.log(error)
             })
-        }, 2000)
+       
     }, [])
 
     const changeQuantity=(productId,quantity)=>{
