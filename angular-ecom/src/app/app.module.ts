@@ -30,6 +30,7 @@ import { AddProductComponent } from './pages/admin/add-product/add-product.compo
 import { ViewProductsComponent } from './pages/admin/view-products/view-products.component';
 import { UpdateProductComponent } from './pages/admin/update-product/update-product.component';
 import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.component';
+import { ManageOrderComponent } from './pages/admin/manage-order/manage-order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.componen
     AddProductComponent,
     ViewProductsComponent,
     UpdateProductComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    ManageOrderComponent
   ],
   imports: [
     BrowserModule,

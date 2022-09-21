@@ -1,0 +1,100 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h3>All orders is here</h3>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>
+                  Order Id
+                </th>
+                <th>
+                  Amount
+                </th>
+                <th>
+                  Status
+                </th>
+                <th>
+                  Payment
+                </th>
+                <th>
+                  Created
+                </th>
+                <th>
+                  Items
+                </th>
+                <th>Action</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr *ngFor="let o of orders">
+                <td>{{o.orderId}}</td>
+                <td>
+                  {{o.orderAmount}}
+                </td>
+                <td>
+                  {{o.orderStatus}}
+                </td>
+                <td>
+                  {{o.paymentStatus}}
+                </td>
+                <td>{{getDate(o.orderCreated)}}</td>
+                <td>{{o.items.length }} items</td>
+                <td>
+                  <button class="btn btn-warning btn-sm" (click)="openModal(content, o.orderId)">View</button>
+                  <button class="btn btn-danger ms-2 btn-sm">Update</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- modal html  -->
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Products</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="card border-0 mt-3 shadow-sm" *ngFor="let item of selectedOrder.items">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <h5>{{ item.product.productName }}</h5>
+            <div class="cart-text">
+              Quantity : <b>{{ item.quantity }}</b>
+            </div>
+
+            <div class="cart-text">
+              Price : <b> ₹ {{ item.totalProductPrice }}</b>
+            </div>
+          </div>
+
+          <div class="col-md-4 text-center">
+            <img
+              [src]="baseUrl + '/products/images/' + item.product.productId"
+              class="img-fluid product-img"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

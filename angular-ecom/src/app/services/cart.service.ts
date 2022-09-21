@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable, Output } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {EventEmitter, Injectable, Output} from '@angular/core';
+import {Observable} from 'rxjs';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -45,9 +45,17 @@ export class CartService {
   createOrder(order: any) {
     return this.httpClient.post(`${environment.baseUrl}/orders/`, order)
   }
+
   //get orders
   getOrders() {
     return this.httpClient.get(`${environment.baseUrl}/orders/`)
+
+  }
+
+  //get all orders
+
+  getAllOrders() {
+    return this.httpClient.get(`${environment.baseUrl}/orders/all`)
 
   }
 

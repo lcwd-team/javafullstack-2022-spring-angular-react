@@ -104,8 +104,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDto> getAll() {
-        // TODO Auto-generated method stub
-        return null;
+        List<Order> all = this.orderRepository.findAll();
+        return all.stream().map(order -> this.mapper.map(order, OrderDto.class)).collect(Collectors.toList());
     }
 
     @Override

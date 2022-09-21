@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -6,11 +6,11 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 export class AuthHelperService {
 
   @Output()
-  public loginLogoutEmitter:EventEmitter<Boolean> = new EventEmitter()
- 
+  public loginLogoutEmitter: EventEmitter<Boolean> = new EventEmitter()
 
 
-  constructor() { }
+  constructor() {
+  }
 
   //login
   login(data: any) {
@@ -53,6 +53,16 @@ export class AuthHelperService {
       return data ? JSON.parse(data).user : null
     }
     return null;
+  }
+
+  //check admin user
+  checkAdminUser(): boolean {
+    let user = this.getCurrentUser()
+    let flag = null
+    if (this.checkLogin()) {
+      flag = user.roles.find((r: any) => r.id === 5245)
+    }
+    return flag ? true : false
   }
 
 

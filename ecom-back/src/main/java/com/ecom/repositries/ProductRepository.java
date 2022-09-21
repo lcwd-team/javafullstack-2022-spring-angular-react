@@ -11,6 +11,8 @@ import com.ecom.models.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-	Page<Product> findByCategory(Category category,Pageable pageable);
-	
+    Page<Product> findByCategory(Category category, Pageable pageable);
+
+    List<Product> findByProductNameContaining(String keywords);
+
 }

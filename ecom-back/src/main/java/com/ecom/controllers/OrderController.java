@@ -1,5 +1,6 @@
 package com.ecom.controllers;
 
+import com.ecom.models.Order;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,11 @@ public class OrderController {
     @GetMapping("/")
     public ResponseEntity<List<OrderDto>> getOrders(Principal principal) {
         return new ResponseEntity<>(this.orderService.getOrderOfUser(principal.getName()), HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public List<OrderDto> getAllOrders(){
+        return this.orderService.getAll();
     }
 
 }
