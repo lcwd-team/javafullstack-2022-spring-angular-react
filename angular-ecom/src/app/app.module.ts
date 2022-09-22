@@ -31,6 +31,7 @@ import { ViewProductsComponent } from './pages/admin/view-products/view-products
 import { UpdateProductComponent } from './pages/admin/update-product/update-product.component';
 import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.component';
 import { ManageOrderComponent } from './pages/admin/manage-order/manage-order.component';
+import {WindowRef} from "./services/WindowRef";
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,14 +68,15 @@ import { ManageOrderComponent } from './pages/admin/manage-order/manage-order.co
     InfiniteScrollModule,
     NgProgressModule,
     NgProgressHttpModule
-    
+
   ],
   providers: [
     {
       provide:HTTP_INTERCEPTORS,
       useClass:JwtInterceptor,
       multi:true
-    }
+    },
+    WindowRef
   ],
   bootstrap: [AppComponent]
 })

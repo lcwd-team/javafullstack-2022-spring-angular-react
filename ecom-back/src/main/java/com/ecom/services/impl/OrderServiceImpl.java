@@ -92,8 +92,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto updateOrder(OrderDto orderDto, int orderId) {
-        // TODO Auto-generated method stub
-        return null;
+
+        Order order = this.orderRepository.findById(orderId).get();
+        order.setPaymentStatus(orderDto.getPaymentStatus());
+//        .... update order information
+
+        this.orderRepository.save(order);
+        return this.mapper.map(order, OrderDto.class);
     }
 
     @Override

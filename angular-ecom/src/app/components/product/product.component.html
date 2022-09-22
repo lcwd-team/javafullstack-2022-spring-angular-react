@@ -1,27 +1,29 @@
 <div class="card mt-2 border-0 shadow-sm" *ngIf="product">
 
-    <img  [src]="baseUrl+'/products/images/'+product.productId" class="card-img-top  product-img" alt="">
+  <img [src]="baseUrl+'/products/images/'+product.productId" class="card-img-top  product-img" alt="">
 
 
-    <div class="card-body border border-top-1">
-        <div class="card-text mb-3">
+  <div class="card-body border border-top-1">
+    <div class="card-text mb-3">
             <span class="text-muted">
                 {{product.category.title}}
             </span>
-        </div>
-        <h5>{{product.productName}}</h5>
-        <div class="card-text">
-            <p [innerHtml]="product.productDesc.slice(0,25)+'.....'"></p>
-        </div>
-        <div class="divider"></div>
-
-        <div class="mt-2">
-            Price : <span class="fw-bold">₹ {{product.productPrice}} </span>
-        </div>
-        <div class="fuild-container mt-2 text-center">
-            <button (click)="addToCardButtonClick(product)" class="btn btn-success btn-sm">Add to Card</button>
-            <button class="btn btn-primary btn-sm ms-1" [routerLink]="'/view-product/'+product.productId" >View Product</button>
-        </div>
-
     </div>
+    <h5>{{product.productName}}</h5>
+    <div class="card-text">
+      <p [innerHtml]="product.productDesc.slice(0,25)+'.....'"></p>
+    </div>
+    <div class="divider"></div>
+
+    <div class="mt-2">
+      Price : <span class="fw-bold">₹ {{product.productPrice}} </span>
+    </div>
+    <div class="fuild-container mt-2 text-center">
+      <button [disabled]="!product.stock" (click)="addToCardButtonClick(product)"
+              class="btn btn-success btn-sm">{{product.stock ? 'Add to Card' : 'Out of Stock'}}</button>
+      <button class="btn btn-primary btn-sm ms-1" [routerLink]="'/view-product/'+product.productId">View Product
+      </button>
+    </div>
+
+  </div>
 </div>
