@@ -1,6 +1,7 @@
 package com.ecom.controllers;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +58,9 @@ public class ProductController {
 
         } catch (IOException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(Map.of("message", "File not uploaded on server !!"), HttpStatus.INTERNAL_SERVER_ERROR);
+            Map<String, Object> data = new HashMap<>();
+            data.put("message", "File not uploaded on server !!\"");
+            return new ResponseEntity<>(data, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
 
